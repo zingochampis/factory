@@ -28,6 +28,14 @@ class OllamaClient:
         try:
             with urllib.request.urlopen(request, timeout=60) as response:
                 body = json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                raise RuntimeError(
+                    f"Ollama is running but model {self.settings.ollama_model!r} is "
+                    f"not installed. Run `ollama pull {self.settings.ollama_model}` "
+                    f"or set OLLAMA_MODEL to an installed model."
+                ) from exc
+            raise RuntimeError(f"Ollama request failed (HTTP {exc.code}).") from exc
         except urllib.error.URLError as exc:
             raise RuntimeError(
                 "Could not reach Ollama. Start Ollama or run with --offline."
