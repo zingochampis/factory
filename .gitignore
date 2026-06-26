@@ -7,4 +7,7 @@ __pycache__/
 .env
 reports/
 *.log
+*.egg-info/
+build/
+dist/
 
