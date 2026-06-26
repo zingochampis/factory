@@ -1,0 +1,45 @@
+usecase_id: invoice-unpaid-chatbot
+version: 0.1.0
+status: draft
+owner: finance-operations
+problem: Internal users need quick, governed answers about unpaid invoice lines.
+primary_users:
+  - finance_all
+  - finance_se
+  - finance_de
+  - sales_acme
+data_sources:
+  - governance/data_contracts/invoice_lines.schema.yaml
+  - golden_sets/invoice-unpaid-chatbot/fake_data/invoice_lines.csv
+security:
+  rls_policy: governance/security/rls_policies.yaml
+  default_decision: deny
+llm:
+  local_runtime: ollama
+  default_model: qwen3:4b
+  provider_adapter: apps/mini_invoice_rag/src/mini_rag/ollama_client.py
+allowed_tasks:
+  - answer questions about visible unpaid invoice lines
+  - summarize visible overdue invoices
+  - answer whether a visible invoice is unpaid, paid, overdue, draft, or cancelled
+  - explain when no accessible matching rows exist
+disallowed_tasks:
+  - bypass RLS
+  - reveal invoices denied by policy
+  - reveal hidden or non-existent bank details
+  - mutate invoice data
+  - create payment promises
+acceptance_criteria:
+  - All golden questions pass.
+  - All RLS cases pass.
+  - All refusal cases pass.
+  - Answers cite invoice ids when using invoice facts.
+  - CI rejects degrading eval results.
+pilot_loop:
+  artifact_to_update_after_feedback:
+    - usecases/invoice-unpaid-chatbot/usecase.spec.yaml
+    - governance/semantic_layer/invoice_lines.semantic.yaml
+    - governance/security/rls_policies.yaml
+    - golden_sets/invoice-unpaid-chatbot/
+    - evals/
+

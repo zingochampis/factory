@@ -1,0 +1,40 @@
+schema_id: invoice_chat_audit_event.v0
+description: Minimal audit event for invoice chatbot interactions.
+fields:
+  - name: event_id
+    type: string
+    required: true
+  - name: occurred_at
+    type: datetime
+    required: true
+  - name: usecase_id
+    type: string
+    required: true
+  - name: usecase_version
+    type: string
+    required: true
+  - name: role
+    type: string
+    required: true
+  - name: question
+    type: string
+    required: true
+  - name: model
+    type: string
+    required: false
+  - name: retrieved_invoice_ids
+    type: array[string]
+    required: true
+  - name: refused
+    type: boolean
+    required: true
+  - name: refusal_reason
+    type: string
+    required: false
+  - name: latency_ms
+    type: integer
+    required: false
+  - name: eval_case_id
+    type: string
+    required: false
+

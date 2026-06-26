@@ -1,0 +1,19 @@
+name: factory-evals
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install app
+        run: pip install -e apps/mini_invoice_rag
+      - name: Run offline eval gate
+        run: python evals/run_evals.py --offline
+

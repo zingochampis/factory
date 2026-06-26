@@ -1,0 +1,80 @@
+contract_id: invoice_lines.v0
+owner: finance-data
+status: draft
+description: Governed fake invoice line data for the unpaid invoice chatbot.
+primary_key:
+  - invoice_id
+  - line_id
+freshness_slo: pilot_static_fixture
+allowed_environments:
+  - local
+  - ci
+  - pilot
+columns:
+  - name: invoice_id
+    type: string
+    required: true
+    description: Stable invoice identifier.
+    example: INV-1001
+  - name: line_id
+    type: integer
+    required: true
+    description: Line number inside the invoice.
+  - name: customer_id
+    type: string
+    required: true
+    description: Governed customer identifier.
+  - name: customer_name
+    type: string
+    required: true
+    description: Display name for the customer.
+  - name: country
+    type: string
+    required: true
+    description: ISO-like market code used by RLS policies.
+  - name: owner_team
+    type: string
+    required: true
+    description: Finance team that owns follow-up.
+  - name: issue_date
+    type: date
+    required: true
+    description: Invoice issue date.
+  - name: due_date
+    type: date
+    required: true
+    description: Date when payment is due.
+  - name: status
+    type: enum
+    required: true
+    allowed_values:
+      - draft
+      - unpaid
+      - overdue
+      - paid
+      - cancelled
+  - name: currency
+    type: string
+    required: true
+    description: Invoice currency.
+  - name: amount_due
+    type: decimal
+    required: true
+    description: Remaining amount due for this invoice line.
+  - name: description
+    type: string
+    required: true
+    description: Short invoice line description.
+  - name: sensitivity
+    type: enum
+    required: true
+    allowed_values:
+      - public
+      - internal
+      - confidential
+data_quality_rules:
+  - invoice_id must match pattern INV-[0-9]+.
+  - amount_due must be greater than or equal to zero.
+  - paid invoices should have amount_due equal to zero in production data.
+  - confidential rows require explicit role access before retrieval.
+

@@ -1,0 +1,11 @@
+eval_suite_id: invoice_unpaid_chatbot_eval.v0
+usecase_id: invoice-unpaid-chatbot
+golden_questions: golden_sets/invoice-unpaid-chatbot/questions.json
+rls_cases: golden_sets/invoice-unpaid-chatbot/rls_cases.json
+refusal_cases: golden_sets/invoice-unpaid-chatbot/refusal_cases.json
+gate:
+  require_all_cases_pass: true
+  fail_on_forbidden_citation: true
+  fail_on_unexpected_refusal: true
+  fail_on_unexpected_answer: true
+

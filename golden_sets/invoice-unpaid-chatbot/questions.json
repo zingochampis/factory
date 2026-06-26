@@ -1,0 +1,39 @@
+[
+  {
+    "id": "G001",
+    "role": "finance_se",
+    "question": "Which unpaid invoices can I see?",
+    "expected_status": "answered",
+    "must_cite": ["INV-1001", "INV-1003"],
+    "must_not_cite": ["INV-1004", "INV-1005"],
+    "must_contain": ["SEK"]
+  },
+  {
+    "id": "G002",
+    "role": "sales_acme",
+    "question": "What unpaid invoices does Acme have?",
+    "expected_status": "answered",
+    "must_cite": ["INV-1001"],
+    "must_not_cite": ["INV-1003", "INV-1004", "INV-1005"],
+    "must_contain": ["Acme Nordic"]
+  },
+  {
+    "id": "G003",
+    "role": "finance_all",
+    "question": "Which unpaid invoices are outside Sweden?",
+    "expected_status": "answered",
+    "must_cite": ["INV-1004", "INV-1005"],
+    "must_not_cite": ["INV-1001", "INV-1003"],
+    "must_contain": ["EUR", "USD"]
+  },
+  {
+    "id": "G004",
+    "role": "finance_se",
+    "question": "Is invoice INV-1002 unpaid?",
+    "expected_status": "answered",
+    "must_cite": ["INV-1002"],
+    "must_not_cite": ["INV-1004", "INV-1005"],
+    "must_contain": ["paid"]
+  }
+]
+

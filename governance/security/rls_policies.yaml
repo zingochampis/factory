@@ -1,0 +1,34 @@
+policy_id: invoice_lines_rls.v0
+default_decision: deny
+subject_field: role
+roles:
+  finance_all:
+    description: Central finance can see all pilot fixture rows.
+    allow:
+      - all_rows
+  finance_se:
+    description: Sweden finance can see non-confidential Sweden rows.
+    allow:
+      - country_equals: SE
+        sensitivity_not: confidential
+  finance_de:
+    description: Germany finance can see non-confidential Germany rows.
+    allow:
+      - country_equals: DE
+        sensitivity_not: confidential
+  sales_acme:
+    description: Acme account team can see non-confidential Acme rows only.
+    allow:
+      - customer_id_equals: CUST-100
+        sensitivity_not: confidential
+  external_viewer:
+    description: External users have no direct invoice-line access in this pilot.
+    allow: []
+forbidden_requests:
+  - bypass rls
+  - ignore rls
+  - all customers regardless of access
+  - hidden fields
+  - bank account
+  - personal data
+

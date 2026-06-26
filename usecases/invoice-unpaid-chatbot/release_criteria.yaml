@@ -1,0 +1,16 @@
+release_gate_id: invoice_unpaid_chatbot_release_gate.v0
+minimums:
+  golden_question_pass_rate: 1.0
+  rls_case_pass_rate: 1.0
+  refusal_case_pass_rate: 1.0
+  forbidden_citation_count: 0
+budgets:
+  target_latency_ms_local: 5000
+  target_context_rows_max: 5
+  target_cost_usd_per_1000_questions: 0
+manual_checks_before_pilot:
+  - Run offline evals.
+  - Run at least three smoke questions against local Ollama qwen3:4b.
+  - Confirm answer citations are understandable to finance users.
+  - Confirm audit event fields are sufficient for pilot review.
+

@@ -1,0 +1,38 @@
+access_contract_id: llm_invoice_read_access.v0
+applies_to: invoice-unpaid-chatbot
+allowed_sources:
+  - golden_sets/invoice-unpaid-chatbot/fake_data/invoice_lines.csv
+allowed_fields:
+  - invoice_id
+  - line_id
+  - customer_id
+  - customer_name
+  - country
+  - owner_team
+  - issue_date
+  - due_date
+  - status
+  - currency
+  - amount_due
+  - description
+  - sensitivity
+runtime_requirements:
+  - Apply RLS before retrieval context is sent to the LLM.
+  - Keep retrieved context small and cited.
+  - Log role, question id when available, retrieved invoice ids, refusal reason, latency, and model.
+  - Do not send rows denied by RLS to the model, even for summarization.
+response_requirements:
+  - Include invoice_id citations for factual invoice answers.
+  - Make refusal explicit and short.
+  - State when no accessible matching data exists.
+replaceable_components:
+  - LLM provider
+  - retrieval algorithm
+  - app framework
+  - eval runner
+non_replaceable_without_contract_update:
+  - RLS behavior
+  - business definitions
+  - release criteria
+  - golden expected outcomes
+

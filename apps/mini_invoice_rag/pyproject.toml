@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mini-invoice-rag"
+version = "0.1.0"
+description = "Minimal governed RAG app for unpaid invoice questions."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+mini-invoice-rag = "mini_rag.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

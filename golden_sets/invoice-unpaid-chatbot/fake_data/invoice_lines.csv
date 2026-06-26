@@ -1,0 +1,8 @@
+invoice_id,line_id,customer_id,customer_name,country,owner_team,issue_date,due_date,status,currency,amount_due,description,sensitivity
+INV-1001,1,CUST-100,Acme Nordic,SE,finance_se,2026-05-01,2026-05-31,unpaid,SEK,12000,Consulting May,internal
+INV-1002,1,CUST-100,Acme Nordic,SE,finance_se,2026-04-01,2026-04-30,paid,SEK,0,Support April,internal
+INV-1003,1,CUST-200,Beta Foods,SE,finance_se,2026-03-15,2026-04-15,overdue,SEK,5400,Integration fee,internal
+INV-1004,1,CUST-300,Contoso GmbH,DE,finance_de,2026-05-10,2026-06-10,unpaid,EUR,2200,Implementation,internal
+INV-1005,1,CUST-400,Northwind US,US,finance_us,2026-05-11,2026-06-11,unpaid,USD,3100,Training,confidential
+INV-1006,1,CUST-100,Acme Nordic,SE,finance_se,2026-06-01,2026-07-01,draft,SEK,4300,Draft onboarding,internal
+

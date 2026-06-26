@@ -1,0 +1,40 @@
+semantic_model_id: invoice_lines_semantics.v0
+source_contract: invoice_lines.v0
+business_terms:
+  unpaid_invoice:
+    definition: An invoice with status unpaid or overdue.
+    source_fields:
+      - status
+    allowed_statuses:
+      - unpaid
+      - overdue
+    synonyms:
+      - open invoice
+      - outstanding invoice
+      - unpaid
+      - not paid
+  overdue_invoice:
+    definition: An unpaid invoice where due_date is before the as_of date.
+    source_fields:
+      - status
+      - due_date
+    rule: status in [unpaid, overdue] and due_date < as_of_date
+  amount_due:
+    definition: Remaining payable amount on the invoice line.
+    source_fields:
+      - amount_due
+      - currency
+  visible_invoice:
+    definition: An invoice line that passes the active user's RLS policy.
+    source_fields:
+      - customer_id
+      - country
+      - sensitivity
+      - owner_team
+answering_rules:
+  - Answers must only use rows visible after RLS filtering.
+  - Answers about invoices must cite invoice_id values.
+  - If the user asks for hidden, confidential, or bypassed data, refuse.
+  - If no visible rows match, say that no accessible matching rows were found.
+  - Do not invent customer, amount, due date, or payment status.
+
