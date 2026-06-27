@@ -27,8 +27,7 @@ roles:
 forbidden_requests:
   - bypass rls
   - ignore rls
-  - all customers regardless of access
+  - regardless of access
   - hidden fields
   - bank account
   - personal data
-

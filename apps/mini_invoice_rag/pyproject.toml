@@ -7,11 +7,10 @@ name = "mini-invoice-rag"
 version = "0.1.0"
 description = "Minimal governed RAG app for unpaid invoice questions."
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["pyyaml>=6"]
 
 [project.scripts]
 mini-invoice-rag = "mini_rag.app:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
