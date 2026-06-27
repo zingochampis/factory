@@ -10,7 +10,7 @@ budgets:
   target_cost_usd_per_1000_questions: 0
 manual_checks_before_pilot:
   - Run offline evals.
-  - Run at least three smoke questions against local Ollama qwen3:4b.
+  - Run at least three smoke questions against local Ollama ministral-3:3b.
   - Confirm answer citations are understandable to finance users.
   - Confirm audit event fields are sufficient for pilot review.
 

@@ -24,7 +24,7 @@ py .\evals\run_evals.py --offline
 Local model smoke mode can use Ollama:
 
 ```powershell
-$env:OLLAMA_MODEL = "qwen3:4b"
+$env:OLLAMA_MODEL = "ministral-3:3b"
 python .\evals\run_evals.py
 ```
 

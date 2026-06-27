@@ -16,7 +16,7 @@ security:
   default_decision: deny
 llm:
   local_runtime: ollama
-  default_model: qwen3:4b
+  default_model: ministral-3:3b
   provider_adapter: apps/mini_invoice_rag/src/mini_rag/ollama_client.py
 allowed_tasks:
   - answer questions about visible unpaid invoice lines

@@ -54,7 +54,7 @@ The release candidate is acceptable when:
 - RLS case pass rate is 100 percent
 - refusal case pass rate is 100 percent
 - no answer contains a forbidden invoice id
-- local Ollama testing with `qwen3:4b` has no obvious prompt-format breakage
+- local Ollama testing with `ministral-3:3b` has no obvious prompt-format breakage
 
 ## Replaceability
 

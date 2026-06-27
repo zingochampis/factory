@@ -37,10 +37,10 @@ Run the app in deterministic offline mode:
 python -m mini_rag.app "Which unpaid invoices can I see?" --role finance_se --offline
 ```
 
-Run with local Ollama and Qwen3:4b:
+Run with local Ollama and Ministral-3:3b:
 
 ```powershell
-$env:OLLAMA_MODEL = "qwen3:4b"
+$env:OLLAMA_MODEL = "ministral-3:3b"
 python -m mini_rag.app "Which unpaid invoices can I see?" --role finance_se
 ```
 
